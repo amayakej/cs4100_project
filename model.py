@@ -128,6 +128,14 @@ class State:
         else:
             return 0
 
+    def getLegalActions(self):
+        actions = []
+        for col in range(len(self.grid[0])):
+            if col == 0:
+                actions.append(col)
+        return actions
+
+
     def __str__(self):
         ret = ""
         numSpaceX = 2
