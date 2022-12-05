@@ -118,20 +118,11 @@ class State:
         """
         return self.isWin() or self.isLoss() or self.isDraw()
 
-    # gets the utility of a terminal state
-    def getUtility(self):
-        if self.isWin:
-            return 1
-        if self.isLoss:
-            return -1
-        #Assume it is a terminal state, so return 0 for the draw
-        else:
-            return 0
 
     def getLegalActions(self):
         actions = []
         for col in range(len(self.grid[0])):
-            if col == 0:
+            if self.grid[0][col] == 0:
                 actions.append(col)
         return actions
 
