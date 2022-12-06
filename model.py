@@ -100,12 +100,12 @@ class State:
         """
 
         #Check is either player has won
-        if self.isWin() or self.isLoss:
+        if self.isWin() or self.isLoss():
             return True
         
         #Check if all columns are filled
-        for row in self.grid:
-            if row[0] == State.EMPTY:
+        for col in self.grid[0]:
+            if self.grid[0][col] == State.EMPTY:
                 return False
         return True
 
@@ -120,12 +120,17 @@ class State:
 
 
     def getLegalActions(self):
+        """
+        Returns a list of legal actions that any player could take in the current State.
+
+        Returns:
+            list[int]: A list of legal actions
+        """
         actions = []
         for col in range(len(self.grid[0])):
             if self.grid[0][col] == 0:
                 actions.append(col)
         return actions
-
 
     def __str__(self):
         ret = ""
@@ -149,13 +154,6 @@ class State:
 
     def __hash__(self):
         return hash(self.grid)
-                  
-# An Action is described by a target column
-# to which the player drops his piece
-class Action:
-
-    def _init_(self, col):
-        self.col = col
 
 if __name__ == '__main__':
     #Horizontal win for player 1
